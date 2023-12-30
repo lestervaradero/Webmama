@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<head>
+
+ {% load static %}
+
+<title>Magalys Shop</title>
+<link rel="shortcut icon" href="{% static 'images/icon_Maga.png' %}" alt = "">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/> 
+<link href="{% static 'css/slider.css' %} " rel="stylesheet" type="text/css" media="all"/> 
+<script type="text/javascript" src="{% static 'js/jquery-1.7.2.min.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/move-top.js' %} "></script>
+<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/startstop-slider.js' %}"></script>
+
+</head>
+
+
+
+<body>
+  
+	
+	
+	<div class="wrap">
+	
+	
+		
+		<div class="header_top">
+			
+			<div class = "header" >
+			
+			
+			<div class="logo">
+				
+				<img src="{% static 'images/Maga.png' %}"  alt=""/>
+				
+			</div>
+			 <div>
+			 
+			  <script type="text/javascript">
+			function DropDown(el) {
+				this.dd = el;
+				this.initEvents();
+			}
+			DropDown.prototype = {
+				initEvents : function() {
+					var obj = this;
+
+					obj.dd.on('click', function(event){
+						$(this).toggleClass('active');
+						event.stopPropagation();
+					});	
+				}
+			}
+
+			$(function() {
+
+				var dd = new DropDown( $('#dd') );
+
+				$(document).click(function() {
+					// all dropdowns
+					$('.wrapper-dropdown-2').removeClass('active');
+				});
+
+			});
+
+		</script>
+	 <div class="clear"></div>
+  </div>
+	
+	<div class="header_slide">
+			<div class="header_bottom_left">				
+				<div class="categories">
+				  <ul>
+				  	<h3>Categorías ({{Categorysc}})</h3>
+ 
+					  {%for Category in Categorys%}
+					  <li><a href="#{{Category.Cate}}">{{Category.Cate}} ({{Category.Cant}})</a></li>
+					  {%endfor%}
+
+				  </ul>
+				</div>					
+	  	     </div>
+					 <div class="header_bottom_right">					 
+					 	 <div class="slider">					     
+							 <div id="slider">
+			                    <div id="mover">
+			                    	<div id="slide-1" class="slide" >			                    
+									
+										<div class="slider-img">
+									     <a href="#"><img src="{{ random.Timage.url  }}" alt="learn more" /></a>									    
+									  </div>
+						             	<div class="slider-text">
+		                                 <h1>Rebajas<br><span>Shop</span></h1>
+		                                 <h2>UPTo {{random.rebaja}}% OFF</h2>
+									   <div class="features_list">
+									   	<h4>{{random.Nombre}}</h4>							               
+							            </div>
+										<div style = "display: flex; justify-content: justify-start">
+											<h4 style = "text-decoration:line-through;"> {{random.Precio}}$</h4>
+											<h4>.      .</h4>
+											<h4 style ="color:red;">{{rebaja}}$</h4>
+										</div>
+										<div class="clear"></div>	
+					                   </div>			               
+									  		
+				                  </div>	
+						             												
+								
+								</div>		
+		                </div>
+					 <div class="clear"></div>					       
+		         </div>
+		      </div>
+		   <div class="clear"></div>
+		</div>
+   </div>
+ 
+   <div class="main">
+    
+	<div class="content">
+    	<div class="content_top">
+    		<div class="heading">
+    		<h3>Productos({{Cantidad}})</h3>
+    		</div>
+    		<div class="see">
+    			<p><a href = {% url "Productos" %}>Ver todos los productos</a></p>
+    		</div>
+    		<div class="clear"></div>
+    	
+		</div>
+	      
+		<div class="section group">
+				
+			{% for Producto in ProductosNew %}
+			<div class="grid_1_of_4 images_1_of_4">
+					
+				<img src="{{Producto.Timage.url}}" alt="" width= 200 height= 250/>
+					 <h2>{{Producto.Nombre}}</h2>
+					
+					 <div class="price-details">
+				       <div class="price-number">
+							<p><span class="rupees"><strong>Precio: {{Producto.Precio}}$</strong></span></p>
+					   </div>
+
+					</div>
+				
+			</div>
+			{%endfor%}
+
+		</div>
+			
+			{%for Categor in Categorys%}
+			<div class="content_bottom">
+    		<div class="heading">
+    		<h3 id = "{{Categor.Cate}}">{{Categor.Cate}}</h3>
+    		</div>
+    		<div class="see">
+			
+    			<Form method = "get" action = "/Cat"><button  style = "border: none;  background: rgba(29, 49, 42, 0.0 )" type = "submit" value = "{{Categor.Cate}}" name = "Cat">
+					<p>Ver todos los productos  <img src = " {% static 'images/list-img.png' %}"/></p> </button></Form>
+				
+    		</div>
+    		
+			<div class="clear"></div>
+    	</div>
+			
+		
+		<div class="section group">
+
+			{% for Producto in ListT %}
+			{% if Producto.Category == Categor.Cate %}
+			<div class="grid_1_of_4 images_1_of_4">
+				<img src="{{Producto.Timage.url}}" alt="" width= 200 height= 250/>					
+					 <h2>{{Producto.Nombre}} </h2>
+					<div class="price-details">
+				       <div class="price-number">
+							<p><span class="rupees">Precio: {{Producto.Precio}}$</span></p>
+					    </div>
+					    
+					</div>
+				</div>
+				
+				
+				{% endif %}
+				{% endfor %}	
+				
+
+			</div>
+			
+			
+		{% endfor %}
+
+			
+
+    </div>
+ </div>
+
+</div>
+   <div class="footer">
+   	  <div class="wrap">	
+	     <div class="section group">
+				
+				
+				<div class="col_1_of_4 span_1_of_4">
+					<h4>Contact</h4>
+						<ul>
+							<li><span>Magalys: +53 54113063</span></li>
+							<li><span>Beatriz: +53 59043680</span></li>
+							<li><span>Dirección: 4ta Ave, entre calle 14 y calle 16 Varadero</span></li>
+						</ul>
+						<div class="social-icons">
+							<h4>Follow Us</h4>
+					   		  <ul>
+							      <li><a href="#" target="_blank"><img src="{% static 'images/facebook.png' %}" alt="" /></a></li>
+							      <li><a href="#" target="_blank"><img src="{% static 'images/twitter.png' %}" alt="" /></a></li>
+							      <li><a href="#" target="_blank"> <img src="{% static 'images/linkedin.png' %}" alt="" /></a></li>
+							      <div class="clear"></div>
+						     </ul>
+   	 					</div>
+
+				</div>
+			
+				<div><img src="{% static 'images/Maga.png' %}"  alt=""/></div>
+			</div>			
+        </div>
+        <div class="copy_right">
+				<p>&copy; Sitios para compras, no dude en llamar</a></p>
+		   </div>
+    </div>
+    <script type="text/javascript">
+		$(document).ready(function() {			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script>
+    <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+</body>
+</html>
+

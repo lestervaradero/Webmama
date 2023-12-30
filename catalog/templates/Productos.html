@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Productos</title>
+        <link rel="shortcut icon" href="{% static 'images/icon_Maga.png' %}" alt = "">
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/> 
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="all"/>  
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    </head>
+    
+
+    <body>
+       
+        <div class = "container">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand">Productos</a>
+            
+            <form class="row align-items-end"  method = "get" action = "/Prod">
+                <div class = "col" >
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name = "buscar">
+                </div>
+                <div class="col">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Buscar</button>
+                </div>
+            </form>
+
+            <div> <a href = {% url "index" %}><button class = "btn btn-outline-success my-2 my-sm-1"> Atrás</button></a></div>
+          </nav>
+          
+        </div>
+
+        
+
+        {%for Producto in Prod%}
+        <div class="container" >
+        
+            <div class="grid_1_of_4 images_1_of_4">
+            <img src="{{Producto.Timage.url}}" alt="" width= 200 height= 250/>
+             <h2>{{Producto.Nombre}}</h2>
+            
+             <div class="price-details">
+               <div class="price-number">
+                    <p><span class="rupees">Precio: {{Producto.Precio}}$</span></p>
+                </div>
+                
+                <div class = "Categor">
+                    <p><span class="rupees"> {{Producto.Category}}</span></p>
+                </div> 
+
+            </div>
+            
+         </div>
+         </div>
+        {%endfor%}
+
+    
+
+        <script src="" async defer></script>
+    </body>
+</html>
