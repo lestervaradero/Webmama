@@ -43,7 +43,10 @@
         <div class="container" >
         
             <div class="grid_1_of_4 images_1_of_4">
-            <img src="{{Producto.Timage.url}}" alt="" width= 200 height= 250/>
+                <form method = "get" action = "/ProdSe">
+					<button style = "border: none;  background: rgba(29, 49, 42, 0.0 )" type = "submit" value = "{{Producto.id}}" name = "Producto">
+						 <img src="{{ Producto.Timage.url  }}" alt="" width="200" height="250"/></button>								    
+				</form>
              <h2>{{Producto.Nombre}}</h2>
             
              <div class="price-details">

@@ -68,31 +68,34 @@
 	 <div class="clear"></div>
   </div>
 	
-	<div class="header_slide">
+	
 			<div class="header_bottom_left">				
 				<div class="categories">
 				  <ul>
-				  	<h3>Categorías ({{Categorysc}})</h3>
+				  	<h3 style="font-size: 2em;">Categorías</h3>
  
 					  {%for Category in Categorys%}
-					  <li><a href="#{{Category.Cate}}">{{Category.Cate}} ({{Category.Cant}})</a></li>
+					  <li><a href="#{{Category.Cate}}" style="font-size: 1em;">{{Category.Cate}} ({{Category.Cant}})</a></li>
 					  {%endfor%}
 
 				  </ul>
 				</div>					
 	  	     </div>
-					 <div class="header_bottom_right">					 
+					 					 
 					 	 <div class="slider">					     
 							 <div id="slider">
 			                    <div id="mover">
 			                    	<div id="slide-1" class="slide" >			                    
 									
 										<div class="slider-img">
-									     <a href="#"><img src="{{ random.Timage.url  }}" alt="learn more" /></a>									    
-									  </div>
+									    <form method = "get" action = "/ProdSe">
+											<button style = "border: none;  background: rgba(29, 49, 42, 0.0 )" type = "submit" value = "{{random.id}}" name = "Producto">
+												 <img src="{{ random.Timage.url  }}" alt="learn more" /></button>								    
+										</form>
+										</div>
 						             	<div class="slider-text">
-		                                 <h1>Rebajas<br><span>Shop</span></h1>
-		                                 <h2>UPTo {{random.rebaja}}% OFF</h2>
+		                                 <h1>Rebajas<br>Shop</h1>
+		                                 <h2> {{random.rebaja}}% OFF </h2>
 									   <div class="features_list">
 									   	<h4>{{random.Nombre}}</h4>							               
 							            </div>
@@ -111,9 +114,9 @@
 		                </div>
 					 <div class="clear"></div>					       
 		         </div>
-		      </div>
+		      
 		   <div class="clear"></div>
-		</div>
+		
    </div>
  
    <div class="main">
@@ -124,7 +127,7 @@
     		<h3>Productos({{Cantidad}})</h3>
     		</div>
     		<div class="see">
-    			<p><a href = {% url "Productos" %}>Ver todos los productos</a></p>
+    			<p><a href = {% url "Productos" %} style="font-size: 1em;">Ver todos los productos</a></p>
     		</div>
     		<div class="clear"></div>
     	
@@ -135,8 +138,12 @@
 			{% for Producto in ProductosNew %}
 			<div class="grid_1_of_4 images_1_of_4">
 					
-				<img src="{{Producto.Timage.url}}" alt="" width= 200 height= 250/>
-					 <h2>{{Producto.Nombre}}</h2>
+				<form method = "get" action = "/ProdSe">
+					<button style = "border: none;  background: rgba(29, 49, 42, 0.0 )" type = "submit" value = "{{Producto.id}}" name = "Producto">
+						 <img src="{{ Producto.Timage.url  }}" alt="" width="200" height="250"/></button>								    
+				</form>
+					 
+				<h2>{{Producto.Nombre}}</h2>
 					
 					 <div class="price-details">
 				       <div class="price-number">
@@ -158,7 +165,7 @@
     		<div class="see">
 			
     			<Form method = "get" action = "/Cat"><button  style = "border: none;  background: rgba(29, 49, 42, 0.0 )" type = "submit" value = "{{Categor.Cate}}" name = "Cat">
-					<p>Ver todos los productos  <img src = " {% static 'images/list-img.png' %}"/></p> </button></Form>
+					<p style="font-size: 1.5em;">Ver todos los productos   <img src = " {% static 'images/list-img.png' %}"/></p> </button></Form>
 				
     		</div>
     		
@@ -171,7 +178,10 @@
 			{% for Producto in ListT %}
 			{% if Producto.Category == Categor.Cate %}
 			<div class="grid_1_of_4 images_1_of_4">
-				<img src="{{Producto.Timage.url}}" alt="" width= 200 height= 250/>					
+				<form method = "get" action = "/ProdSe">
+					<button style = "border: none;  background: rgba(29, 49, 42, 0.0 )" type = "submit" value = "{{Producto.id}}" name = "Producto">
+						 <img src="{{ Producto.Timage.url  }}" alt="" width="200" height="250"/></button>								    
+				</form>				
 					 <h2>{{Producto.Nombre}} </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -221,10 +231,11 @@
 
 				</div>
 			
-				<div><img src="{% static 'images/Maga.png' %}"  alt=""/></div>
+				<img src="{% static 'images/Maga.png' %}"  width="600" heigth="500" alt=""/></div>
 			</div>			
         </div>
-        <div class="copy_right">
+       
+		<div class="copy_right">
 				<p>&copy; Sitios para compras, no dude en llamar</a></p>
 		   </div>
     </div>

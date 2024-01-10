@@ -89,3 +89,15 @@ def SelectCate(request):
      contenido = {'Prod':Productos}
      
      return render(request, 'Productos.html', contenido)
+
+
+def ProdSelect(request):
+     
+     Prod = request.GET.get("Producto")
+     
+     Product = Producto.objects.get(id = Prod)
+     
+     contenido = {'Prod':Product}
+     
+     print(Product)
+     return render(request,'Producto.html', contenido)
